@@ -3,16 +3,16 @@ import { test, expect } from '@playwright/test'
 test.setTimeout(60000) 
 
 const INITIAL_MOCK = {
-    "name": "Alan Brito",
+    "name": "Alexander Gómez",
     "position": "Desarrollador",
     "salary": 5000000
 }
 
 const UPDATE_MOCK = {
-    "name": "Armando Casas",
+    "name": "Armando Paredes",
     "salary": 6000000
 }
-
+// Hola
 function formatToCurrency(amount: number): string {
     
     
@@ -30,7 +30,7 @@ test.describe.configure({ mode: 'serial' });
 
 test.describe("CRUD Employees", () => {
 
- /*   test("New Employee", async ({page}) => {
+    test("New Employee", async ({page}) => {
         await page.goto(`/dashboard`)
         await (await page.waitForSelector('a:has-text("Nuevo Empleado")', {state: "attached"})).click()
         await (await page.waitForSelector("input[placeholder='Ingrese el nombre del empleado']", {state: "attached"})).fill(INITIAL_MOCK.name)
@@ -41,7 +41,7 @@ test.describe("CRUD Employees", () => {
         const response = await page.$("p:has-text('No hay empleados registrados.')")
         await expect(response).toBeNull()
     })
-*/
+
     test("List Table", async ({page}) => {
         await page.goto(`/employees`)
         
