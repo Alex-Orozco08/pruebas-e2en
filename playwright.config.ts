@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import { URL_BASE, MAX_TIMEOUT } from './constants';
+import { URL_BASE, MAX_TIMEOUT } from './consts';
 
 /**
  * Read environment variables from file.

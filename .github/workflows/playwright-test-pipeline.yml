@@ -7,17 +7,17 @@ permissions:
     pages: write
     id-token: write
 jobs:
-    pruebasE2E:
-        name: Desplegando el ambiente
+    testsE2E:
+        name: Deploying environment
         runs-on: ubuntu-latest
         steps:
-        - name: Comprobacion del codigo
+        - name: Code verification
           uses: actions/checkout@v4
 
-        - name: Instalando el entorno de NodeJS
+        - name: Setting up NodeJS environment
           uses: actions/setup-node@v6.0.0
         
-        - name: Cachear dependencias de pnpm
+        - name: Caching PNPM dependencies
           uses: actions/cache@v4
           with:
             path: ~/.pnpm-store
@@ -25,7 +25,7 @@ jobs:
             restore-keys: |
               ${{ runner.os }}-pnpm-
 
-        - name: Cachear navegadores de Playwright
+        - name: Caching Playwright browsers
           uses: actions/cache@v4
           with:
             path: ~/.cache/ms-playwright
@@ -33,27 +33,27 @@ jobs:
             restore-keys: |
               ${{ runner.os }}-playwright-
             
-        - name: Instalando PNPM
+        - name: Installing PNPM
           run: npm install -g pnpm
 
-        - name: Instalando las dependencias con PNPM
+        - name: Installing dependencies with PNPM
           run: pnpm install --frozen-lockfile
           
-        - name: Instalando Playwright
+        - name: Installing Playwright
           run: pnpm exec playwright install --with-deps
           
-        - name: Ejecutando los tests
+        - name: Running tests
           run: pnpm playwright test --project=chromium
 
-        - name: Exportando los resultados
+        - name: Exporting results
           uses: actions/upload-artifact@v4
-          if: ${{ always() }} # Se ejecuta incluso si las pruebas fallan o son canceladas
+          if: ${{ always() }} # Runs even if tests fail or are canceled
           with:
             name: playwright-report
             path: playwright-report/
             retention-days: 30
 
-        - name: Desplegando los reportes de Playwright en GithubActions
+        - name: Deploying Playwright reports on GitHub Pages
           if: ${{ always() }}
           uses: peaceiris/actions-gh-pages@v3
           with:
