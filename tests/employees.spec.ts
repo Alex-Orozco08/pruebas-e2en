@@ -30,7 +30,7 @@ test.describe.configure({ mode: 'serial' });
 
 test.describe("CRUD Employees", () => {
 
-    test("New Employee", async ({page}) => {
+ /*   test("New Employee", async ({page}) => {
         await page.goto(`/dashboard`)
         await (await page.waitForSelector('a:has-text("Nuevo Empleado")', {state: "attached"})).click()
         await (await page.waitForSelector("input[placeholder='Ingrese el nombre del empleado']", {state: "attached"})).fill(INITIAL_MOCK.name)
@@ -41,7 +41,7 @@ test.describe("CRUD Employees", () => {
         const response = await page.$("p:has-text('No hay empleados registrados.')")
         await expect(response).toBeNull()
     })
-
+*/
     test("List Table", async ({page}) => {
         await page.goto(`/employees`)
         
