@@ -12,7 +12,7 @@ const UPDATE_MOCK = {
     "name": "Armando Paredes",
     "salary": 6000000
 }
-// Hola
+
 function formatToCurrency(amount: number): string {
     
     
